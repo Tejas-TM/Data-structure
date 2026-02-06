@@ -1,0 +1,91 @@
+#include <stdio.h>
+    printf("Element %d inserted at position %d\n", data, position);
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+void deleteNode(struct LinkedList* list, int position) {
+    // write your code here
+    if (position < 0 || position >= list->size) {
+        printf("Invalid position\n");
+        return;
+    }
+
+    struct Node* temp = list->head;
+    if (position == 0) {
+        list->head = temp->next;
+        free(temp);
+    } else {
+        struct Node* prev = NULL;
+        for (int i = 0; i < position; i++) {
+            prev = temp;
+            temp = temp->next;
+        }
+        prev->next = temp->next;
+        free(temp);
+    }
+
+    list->size--;
+    printf("Element at position %d deleted\n", position);
+
+    
+    
+    
+    
+    
+    
+    
+    
+}
+void reverse(struct LinkedList* list) {
+    // write your code here 
+    
+    struct Node* prevNode = NULL;
+    struct Node* currentNode = list->head;
+    struct Node* nextNode = NULL;
+
+    while (currentNode != NULL) {
+        nextNode = currentNode->next;
+        currentNode->next = prevNode;
+        prevNode = currentNode;
+        currentNode = nextNode;
+    }
+
+    list->head = prevNode;
+
+    
+    
+    
+    
+    
+}
+void display(struct LinkedList* list) {
+    struct Node* current = list->head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+void displayReversed(struct LinkedList* list) {
+    struct Node* current = list->head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    int num_elements;
+    printf("Enter the number of elements in the linked list: ");
